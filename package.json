@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/sirnobrain/mixellany/issues"
   },
-  "homepage": "https://github.com/sirnobrain/mixellany#readme"
+  "homepage": "https://github.com/sirnobrain/mixellany#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2"
+  }
 }
