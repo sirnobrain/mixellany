@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const url = "mongodb://admin:admin@ds235775.mlab.com:35775/mixellany"
-const helper = require('../helper/helper')
 mongoose.connect(url)
 
 const schema = new mongoose.Schema({
@@ -10,10 +9,6 @@ const schema = new mongoose.Schema({
     unique: true
   },
   name: {
-    type: String,
-    required: true
-  },
-  email: {
     type: String,
     required: true
   }
