@@ -1,0 +1,24 @@
+{
+  "name": "mixellany",
+  "version": "1.0.0",
+  "description": "demo -  personal photo album with auto tag and auto caption features.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirnobrain/mixellany.git"
+  },
+  "author": "Redha, Jainal, Bembem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sirnobrain/mixellany/issues"
+  },
+  "homepage": "https://github.com/sirnobrain/mixellany#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2"
+  }
+}
