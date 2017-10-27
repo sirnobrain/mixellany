@@ -19,7 +19,7 @@ RESPONSE -- response object
 	message: status === 200 ? `Success: ${message}.` : `Error: ${message}.`,
 	data: { // null if error
 		jwtoken: // token dari jwt
-	}, 
+	},
 	err: err  // null if not error
 }
 */
@@ -38,12 +38,12 @@ RESPONSE -- response object
 	status: status,
 	message: status === 200 ? `Success: get all user's photos.` : `Error: failed to retrieve user photos.`,
 	// null if error
-	data: [{ 
+	data: [{
 			_id: // id from mongodb
 			imageUrl: // url image
 			caption: // caption
 			tags: // tags
-		}], 
+		}],
 	err: err  // null if not error
 }
 */
@@ -67,7 +67,7 @@ RESPONSE -- response object
 			imageUrl: // url image
 			caption: // caption
 			tags: // tags
-		}, 
+		},
 	err: err  // null if not error
 }
 */
@@ -86,7 +86,7 @@ RESPONSE -- response object
 			imageUrl: // url image
 			caption: // caption
 			tags: // tags
-		}, 
+		},
 	err: err  // null if not error
 }
 */

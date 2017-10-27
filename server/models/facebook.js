@@ -5,11 +5,11 @@ class Facebook{
     return new Promise((resolve, reject) => {
       var fb = new FB.Facebook({
         accessToken: token,
-        appId: 195417424336474,
-        appSecret: 'b7f365d595f51d24f5ecec7d6bed0a5a'
+        appId: 356338638145953,
+        appSecret: '6567697f0e7d17e0be3c4e4066ad09e6'
       })
 
-      FB.api('me', {fields: ['id', 'name', 'birthday'], access_token: req.body.token }, function (me) {
+      fb.api('/me', {fields: ['id', 'name', 'birthday'], access_token: req.body.token }, function (me) {
         const user = {
           fbId: me.id,
           name: me.name
