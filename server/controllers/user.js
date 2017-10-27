@@ -1,6 +1,7 @@
 'use strict'
 
 const models = require('./../models');
+const getImageAnalysis = require('./../helpers/comp-vision');
 
 class User {
 	static signin(req, res) {
@@ -15,7 +16,9 @@ class User {
 
 	static findAll(req, res) {}
 
-	static create(req, res) {}
+	static create(req, res) {
+		
+	}
 
 	static delete(req, res) {}
 }
