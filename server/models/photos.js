@@ -6,6 +6,10 @@ const schema = new mongoose.Schema({
     required: true,
     ref: "User"
   },
+  gcsname: {
+    type: String,
+    required: true
+  },
   imgUrl: {
     type: String,
     required: true
