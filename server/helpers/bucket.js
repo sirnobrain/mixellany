@@ -11,6 +11,9 @@ const bucket = storage.bucket('mixellany.belitopikuy.xyz');
 const upload = (uploadedFile) => {
 	return new Promise((resolve, reject) => {
 		if (!uploadedFile) reject('no file to upload');
+		const getUrl = (filename) => {
+			return `https://storage.googleapis.com/mixellany.belitopikuy.xyz/${filename}`;
+		}
 
 		let gcsname = 'mixellany-' + uploadedFile.originalname;
 

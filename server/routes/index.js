@@ -2,7 +2,7 @@
 
 const express = require('express');
 const controllers = require('./../controllers');
-const decodeToken = require('./helpers/decode-token');
+const decodeToken = require('./../helpers/decode-token');
 
 const router = express.Router();
 

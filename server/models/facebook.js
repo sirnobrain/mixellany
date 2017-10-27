@@ -14,7 +14,7 @@ class Facebook{
           fbId: me.id,
           name: me.name
         }
-        
+      
         resolve(user);
       });
     });
