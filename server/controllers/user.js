@@ -7,9 +7,11 @@ const bucket = require('./../helpers/bucket');
 
 class User {
 	static signin(req, res) {
+		console.log('SIGN IN')
 		models.Facebook.getUserData(req.body.access_token)
 		.then(user => {
 			// balikin jwt ke client, formatnya liat router
+			console.log('--- ini user datalog --->', user)
 		})
 		.catch(err => {
 			res.status(500).send(err);

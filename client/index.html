@@ -18,7 +18,68 @@
     <![endif]-->
   </head>
   <body>
+    <!-- login Fb -->
+
+
+      <!-- / login fb -->
+
     <div id="app"></div>
+
+
+          <script type="text/javascript">
+
+            // function statusChangeCallback(response) {
+            //   // console.log(response);
+            //   if (response.status === 'connected') {
+            //     // Logged into your app and Facebook.
+            //
+            //     let userData = {
+            //       access_token: response.authResponse.accessToken,
+            //       fbId: response.authResponse.userID
+            //     }
+            //
+            //     // let inputData = {
+            //     //   token: response.authResponse.accessToken,
+            //     //   userID: response.authResponse.userID
+            //     // }
+            //
+            //     // console.log(inputData);
+            //     axios.post('http://localhost:3000/user//signin', {
+            //       access_token: response.authResponse.accessToken,
+            //       fbId: response.authResponse.userID
+            //     })
+            //     .then(serverResponse => {
+            //       const jwtoken = serverResponse.data.data.jwtoken
+            //       localStorage.setItem('jwtoken', jwtoken)
+            //     })
+            //     .catch(err => {
+            //       console.log(err)
+            //     })
+            //   }
+            // }
+            //
+            // function checkLoginState() {
+            //   FB.getLoginStatus(function(response) {
+            //     statusChangeCallback(response)
+            //   });
+            // }
+
+            window.fbAsyncInit = function() {
+            FB.init({
+              appId      : 356338638145953,
+              cookie     : true,  // enable cookies to allow the server to access the session
+              xfbml      : true,  // parse social plugins on this page
+              version    : 'v2.8' // use graph api version 2.8
+            });
+          };
+          (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+          </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- / ini fb  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
