@@ -56,7 +56,7 @@ class User {
 		.then(uploadedFile => {
 			gcsname = uploadedFile.gcsname;
 			imgUrl = uploadedFile.cloudStoragePublicUrl;
-			return Promise.all([models.Users.find({fbId: userFbId}), getImageAnalysis(imgUrl)]);
+			return Promise.all([models.Users.findOne({fbId: userFbId}), getImageAnalysis(imgUrl)]);
 		})
 		.then(values => {
 			const user = values[0];
@@ -68,6 +68,7 @@ class User {
 				caption: captionAndTags.caption,
 				tags: captionAndTags.tags
 			}
+			console.log(value);
 			return models.Photos.create(value)
 		})
 		.then(created => {
