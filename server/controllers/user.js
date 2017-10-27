@@ -11,23 +11,23 @@ class User {
 		let token = null;
 		models.Facebook.getUserData(req.body.access_token)
 		.then(user => {
-
-			// balikin jwt ke client, formatnya liat router
 			const jwtoken =  generateToken(user);
-			const response = generateResponse(200, 'token generated', {jwtoken}, null);
 			token = jwtoken;
 			const value = {
 				fbId: user.fbId,
 				name: user.name
 			}
-			return models.User.create(value)
-			res.status(200).send(response);
+			return models.Users.create(value)
+			
 		})
 		.then(created => {
 			const data = {
 				jwtoken: token,
 				user_created: created
 			}
+			console.log(data);
+			const response = generateResponse(200, 'token generated', data, null);
+			res.status(200).send(response);
 		})
 		.catch(err => {
 			res.status(500).send(err);
