@@ -10,10 +10,10 @@ class Facebook{
       })
 
       fb.api('/me', 'get', { access_token: token, fields: 'id,first_name,email' }, function(response) {
-        resolve(response)
+        resolve(response);
       });
     });
   }
 }
 
-module.exports = Facebook
+module.exports = Facebook;
