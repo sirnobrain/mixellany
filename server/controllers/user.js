@@ -2,6 +2,7 @@
 
 const models = require('./../models');
 const getImageAnalysis = require('./../helpers/comp-vision');
+const generateResponse = require('./../helpers/generate-response');
 
 class User {
 	static signin(req, res) {
@@ -14,10 +15,18 @@ class User {
 		});
 	}
 
-	static findAll(req, res) {}
+	static findAll(req, res) {
+		models.Photos.find().exec()
+		.then(photos => {
+			
+		})
+		.catch(err => {
+
+		});
+	}
 
 	static create(req, res) {
-		
+
 	}
 
 	static delete(req, res) {}
