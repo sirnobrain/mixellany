@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar></Navbar>
-    <div class="container">
+    <div class="container maincontent">
       <div class="text-center">
         <h2 class="barnd-style">Mixellany</h2>
       </div>
@@ -33,5 +33,8 @@ h2.barnd-style {
     color: black;
     font-size: 50px;
     font-family: 'Lobster', cursive;
+}
+.container.maincontent {
+    margin-top: 81px;
 }
 </style>

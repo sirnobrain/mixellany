@@ -1,5 +1,5 @@
 <template lang="html">
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -15,7 +15,7 @@
         <ul class="nav navbar-nav navbar-right">
         <li>
           <a href="#">
-            <button type="button" name="button" class="btn btn-danger glyphicon glyphicon-remove"> LogOut</button>
+            <button type="button" name="button" class="btn btn-danger glyphicon glyphicon-remove" @click="LogOut"> LogOut</button>
           </a>
         </li>
       </ul>
@@ -26,11 +26,20 @@
 
 <script>
 export default {
+  methods: {
+    LogOut () {
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 
 <style lang="css">
 nav.navbar.navbar-default {
     border-radius: 0px;
+}
+a.navbar-brand {
+    font-family: 'Lobster', cursive;
+    font-size: 35px;
 }
 </style>
