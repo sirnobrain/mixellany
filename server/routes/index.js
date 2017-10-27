@@ -2,6 +2,7 @@
 
 const express = require('express');
 const controllers = require('./../controllers');
+const decodeToken = require('./helpers/decode-token');
 
 const router = express.Router();
 
@@ -48,7 +49,7 @@ RESPONSE -- response object
 	err: err  // null if not error
 }
 */
-router.get('/', controllers.User.findAll);
+router.get('/', decodeToken, controllers.User.findAll);
 
 
 /*
@@ -73,7 +74,7 @@ RESPONSE -- response object
 	err: err  // null if not error
 }
 */
-router.post('/', controllers.User.create);
+router.post('/', decodeToken, controllers.User.create);
 
 /*
 delete a record of user's photo
@@ -93,6 +94,6 @@ RESPONSE -- response object
 	err: err  // null if not error
 }
 */
-router.delete('/:id', controllers.User.delete);
+router.delete('/:id', decodeToken, controllers.User.delete);
 
 module.exports = router;
