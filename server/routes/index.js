@@ -40,6 +40,7 @@ RESPONSE -- response object
 	// null if error
 	data: [{ 
 			_id: // id from mongodb
+			gcsname: // gcs name
 			imageUrl: // url image
 			caption: // caption
 			tags: // tags
@@ -64,6 +65,7 @@ RESPONSE -- response object
 	// null if error
 	data: { // deleted record
 			_id: // id from mongodb
+			gcsname: // gcs name
 			imageUrl: // url image
 			caption: // caption
 			tags: // tags
@@ -83,6 +85,7 @@ RESPONSE -- response object
 	// null if error
 	data: { // deleted record
 			_id: // id from mongodb
+			gcsname: // gcs name
 			imageUrl: // url image
 			caption: // caption
 			tags: // tags
