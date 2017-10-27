@@ -1,8 +1,8 @@
 <template lang="html">
-  <form>
+  <form enctype="multipart/form-data" @submit.prevent="insertImage()">
     <div class="form-group">
       <label for="exampleInputFile">File input</label>
-      <input type="file" id="exampleInputFile" class="style-file">
+      <input type="file" id="exampleInputFile" class="style-file" name="image">
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary tombol-style"> Tampilkan</button>
@@ -12,6 +12,10 @@
 
 <script>
 export default {
+  // data () {
+  //
+  // },
+  // methods
 }
 </script>
 
