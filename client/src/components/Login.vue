@@ -71,7 +71,7 @@ export default {
 .bacground-style{
   background-image: url('../assets/gambar-admin-1.jpeg');
   height:100vh;
-  /*width: 100%;*/
+  width: 100%;
   text-align: center;
 }
 button.btn.btn-primary.login-fb-style {
