@@ -5,9 +5,12 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
+const multer = require('./helpers/multer');
+
 const app = express();
 
 app.use(cors());
+app.use(multer.single('image'));
 
 // test server
 app.get('/', (req, res) => {
