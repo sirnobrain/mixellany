@@ -36,7 +36,10 @@ class User {
 
 	static findAll(req, res) {
 		const options = {fbId: req.headers.user.fbId};
-		models.Photos.find(options).exec()
+		models.Users.findOne(options).exec()
+		.then(user => {
+			return models.Photos.find({user: user._id}).exec()
+		})
 		.then(photos => {
 			const response = generateResponse(200, 'fetch all user\'s photos', photos, null);
 			res.status(200).send(response);
