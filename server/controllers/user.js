@@ -19,9 +19,11 @@ class User {
 		models.Photos.find().exec()
 		.then(photos => {
 			const response = generateResponse(200, 'fetch all user\'s photos', photos, null);
+			res.status(200).send(response);
 		})
 		.catch(err => {
 			const response = generateResponse(500, 'failed to retrieve user\'s photos', null, err);
+			res.status(500).send(response);
 		});
 	}
 
