@@ -11,11 +11,68 @@
       Sign in with Facebook
     </fb-signin-button> -->
     </div>
+    <script type="text/javascript">
+    </script>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+
+  function statusChangeCallback(response) {
+    // console.log(response);
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+
+      let userData = {
+        access_token: response.authResponse.accessToken,
+        fbId: response.authResponse.userID
+      }
+
+      // let inputData = {
+      //   token: response.authResponse.accessToken,
+      //   userID: response.authResponse.userID
+      // }
+
+      // console.log(inputData);
+      axios.post('http://localhost:3000/user//signin', {
+        access_token: response.authResponse.accessToken,
+        fbId: response.authResponse.userID
+      })
+      .then(serverResponse => {
+        const jwtoken = serverResponse.data.data.jwtoken
+        localStorage.setItem('jwtoken', jwtoken)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response)
+    });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : 195417424336474,
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.10'
+    });
+    FB.AppEvents.logPageView()
+  }
+
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0]
+     if (d.getElementById(id)) {return}
+     js = d.createElement(s); js.id = id
+     js.src = "//connect.facebook.net/en_US/sdk.js"
+     fjs.parentNode.insertBefore(js, fjs)
+   }(document, 'script', 'facebook-jssdk'))
+
 export default {
   data () {
     return {
@@ -50,9 +107,11 @@ export default {
         console.log('ini jika eroor', err)
       })
     },
+
     onSignInError (error) {
       console.log('OH NOES', error)
     },
+
     testLogin () {
       this.$router.push('/home')
     }
