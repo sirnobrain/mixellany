@@ -11,23 +11,23 @@ class User {
 		let token = null;
 		models.Facebook.getUserData(req.body.access_token)
 		.then(user => {
-
-			// balikin jwt ke client, formatnya liat router
 			const jwtoken =  generateToken(user);
-			const response = generateResponse(200, 'token generated', {jwtoken}, null);
 			token = jwtoken;
 			const value = {
 				fbId: user.fbId,
 				name: user.name
 			}
-			return models.User.create(value)
-			res.status(200).send(response);
+			return models.Users.create(value)
+			
 		})
 		.then(created => {
 			const data = {
 				jwtoken: token,
 				user_created: created
 			}
+			console.log(data);
+			const response = generateResponse(200, 'token generated', data, null);
+			res.status(200).send(response);
 		})
 		.catch(err => {
 			res.status(500).send(err);
@@ -56,7 +56,7 @@ class User {
 		.then(uploadedFile => {
 			gcsname = uploadedFile.gcsname;
 			imgUrl = uploadedFile.cloudStoragePublicUrl;
-			return Promise.all([models.Users.find({fbId: userFbId}), getImageAnalysis(imgUrl)]);
+			return Promise.all([models.Users.findOne({fbId: userFbId}), getImageAnalysis(imgUrl)]);
 		})
 		.then(values => {
 			const user = values[0];
@@ -68,6 +68,7 @@ class User {
 				caption: captionAndTags.caption,
 				tags: captionAndTags.tags
 			}
+			console.log(value);
 			return models.Photos.create(value)
 		})
 		.then(created => {
