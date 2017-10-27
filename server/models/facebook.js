@@ -1,7 +1,7 @@
-const FB = require('fb')
+const FB = require('fb');
 
 class Facebook{
-  static userData(token){
+  static getUserData(token){
     return new Promise((resolve, reject) => {
       var fb = new FB.Facebook({
         accessToken: token,
@@ -9,8 +9,12 @@ class Facebook{
         appSecret: 'b7f365d595f51d24f5ecec7d6bed0a5a'
       })
 
-      fb.api('/me', 'get', { access_token: token, fields: 'id,first_name,email' }, function(response) {
-        resolve(response);
+      FB.api('me', {fields: ['id', 'name', 'birthday'], access_token: req.body.token }, function (me) {
+        const user = {
+          fbId: me.id,
+          name: me.name
+        }
+        resolve(user);
       });
     });
   }
