@@ -9,11 +9,12 @@ class Facebook{
         appSecret: '6567697f0e7d17e0be3c4e4066ad09e6'
       })
 
-      fb.api('/me', {fields: ['id', 'name', 'birthday'], access_token: req.body.token }, function (me) {
+      fb.api('/me', {fields: ['id', 'name'], access_token: token }, function (me) {
         const user = {
           fbId: me.id,
           name: me.name
         }
+        
         resolve(user);
       });
     });

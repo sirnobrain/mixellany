@@ -1,6 +1,7 @@
 'use strict'
 
-const Storage = require('@google-cloud/storage')({
+const Storage = require('@google-cloud/storage')
+const storage = Storage({
 	projectId: 'api-project-721451771393',
 	keyFilename: 'keyfile.json'
 });
@@ -16,7 +17,7 @@ const upload = (uploadedFile) => {
 		let file = bucket.file(gcsname);
 
 		let stream = file.createWriteStream({
-			metadata: { contentType: uploadedFile.mimetype };
+			metadata: { contentType: uploadedFile.mimetype }
 		});
 
 		stream.on('error', (err) => {

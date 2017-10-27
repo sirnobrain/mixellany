@@ -1,5 +1,7 @@
 'use strict';
 
+const mongoose = require('mongoose');
+
 const schema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,

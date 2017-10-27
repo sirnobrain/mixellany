@@ -2,7 +2,7 @@
 
 const request = require('ajax-request');
 
-module.exports = getImageAnalysis(imageUrl) {
+module.exports = (imageUrl) => {
 	return new Promise((resolve, reject) => {
 		const data = { url: imageUrl };
 	  const uri = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Categories,Tags,Description";
@@ -26,5 +26,5 @@ module.exports = getImageAnalysis(imageUrl) {
 
 	  	resolve({ caption, tags });
 	  })
-	});
+	})
 };

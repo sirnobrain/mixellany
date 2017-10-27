@@ -3,15 +3,17 @@
 const models = require('./../models');
 const getImageAnalysis = require('./../helpers/comp-vision');
 const generateResponse = require('./../helpers/generate-response');
+const generateToken = require('./../helpers/generate-token');
 const bucket = require('./../helpers/bucket');
 
 class User {
 	static signin(req, res) {
-		console.log('SIGN IN')
 		models.Facebook.getUserData(req.body.access_token)
 		.then(user => {
 			// balikin jwt ke client, formatnya liat router
-			console.log('--- ini user datalog --->', user)
+			const jwtoken =  generateToken(user);
+			const response = generateResponse(200, 'token generated', {jwtoken}, null);
+			res.status(200).send(response);
 		})
 		.catch(err => {
 			res.status(500).send(err);
@@ -19,7 +21,9 @@ class User {
 	}
 
 	static findAll(req, res) {
-		models.Photos.find().exec()
+		console.log('GETTTTTTETETETETE', req.headers.user);
+		const options = {fbId: req.headers.user.fbId};
+		models.Photos.find(options).exec()
 		.then(photos => {
 			const response = generateResponse(200, 'fetch all user\'s photos', photos, null);
 			res.status(200).send(response);
@@ -65,7 +69,10 @@ class User {
 		const options = {_id: req.params.id};
 		const filename = req.params.imgUrl; // perlu dimodifikasi?
 
-		Promise.all([models.Photos.deleteOne(options), bucket.destroy(filename)])
+		models.Photos.findById(req.params.id).exec()
+		.then(photo => {
+			return Promise.all([models.Photos.deleteOne(options), bucket.destroy(photo.gcsname)]);
+		})
 		.then(() => {
 			const response = generateResponse(200, `delete photo with id ${req.params.id}`, options, null);
 			res.status(200).send(response);

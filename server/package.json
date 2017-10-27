@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sirnobrain/mixellany#readme",
   "dependencies": {
+    "@google-cloud/storage": "^1.4.0",
     "ajax-request": "^1.2.3",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
