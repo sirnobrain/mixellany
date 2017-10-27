@@ -8,12 +8,26 @@ const bucket = require('./../helpers/bucket');
 
 class User {
 	static signin(req, res) {
+		let token = null;
 		models.Facebook.getUserData(req.body.access_token)
 		.then(user => {
+
 			// balikin jwt ke client, formatnya liat router
 			const jwtoken =  generateToken(user);
 			const response = generateResponse(200, 'token generated', {jwtoken}, null);
+			token = jwtoken;
+			const value = {
+				fbId: user.fbId,
+				name: user.name
+			}
+			return models.User.create(value)
 			res.status(200).send(response);
+		})
+		.then(created => {
+			const data = {
+				jwtoken: token,
+				user_created: created
+			}
 		})
 		.catch(err => {
 			res.status(500).send(err);
@@ -21,7 +35,6 @@ class User {
 	}
 
 	static findAll(req, res) {
-		console.log('GETTTTTTETETETETE', req.headers.user);
 		const options = {fbId: req.headers.user.fbId};
 		models.Photos.find(options).exec()
 		.then(photos => {
@@ -37,23 +50,25 @@ class User {
 	static create(req, res) {
 		let gcsname = null;
 		let imgUrl = null;
+		let userFbId = req.headers.user.fbId;
 
 		bucket.upload(req.file)
 		.then(uploadedFile => {
 			gcsname = uploadedFile.gcsname;
 			imgUrl = uploadedFile.cloudStoragePublicUrl;
-
-			return getImageAnalysis(imgUrl);
+			return Promise.all([models.Users.find({fbId: userFbId}), getImageAnalysis(imgUrl)]);
 		})
-		.then(captionAndTags => {
+		.then(values => {
+			const user = values[0];
+			const captionAndTags = values[1];
 			const value = {
+				user: user._id,
 				gcsname: gcsname,
-				imageUrl: imgUrl,
+				imgUrl: imgUrl,
 				caption: captionAndTags.caption,
 				tags: captionAndTags.tags
 			}
-
-			return models.User.create(value)
+			return models.Photos.create(value)
 		})
 		.then(created => {
 			const response = generateResponse(200, 'photo uploaded', created, null);

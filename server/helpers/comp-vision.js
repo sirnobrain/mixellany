@@ -19,7 +19,14 @@ module.exports = (imageUrl) => {
 
 	  request.post(param, (err, response, body) => {
 	  	if (err) reject(err);
-	  	const caption = body.description.captions ? body.description.captions[0].text : null;
+	  	body = JSON.parse(body);
+	  	let caption = null;
+	  	if (body.description) {
+	  		if (body.description.captions) {
+	  			caption = body.description.captions[0].text;
+	  		}
+	  	}
+
 	  	const tags = body.tags
 	  								.filter(tag => tag.confidence >= 0.9)
 	  								.map(tag => tag.name);
